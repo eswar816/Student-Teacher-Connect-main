@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "252977785212",
+    "project_id": "assignment-cefb2",
+    "storage_bucket": "assignment-cefb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252977785212:android:7e5574937d07d2d6d71cf9",
+        "android_client_info": {
+          "package_name": "com.rljit_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252977785212-649mdn761qk7kbmle8nb8ifje6n4023c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD2f8j5ihYHsULPsy4BOZPRuysPP1IkNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252977785212-649mdn761qk7kbmle8nb8ifje6n4023c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
