@@ -1318,28 +1318,21 @@ class _ThirdPageState extends State<ThirdPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Enter File Name:"),
+                          Text("Enter subject Code :"),
                           SizedBox(width: 20,),
                           Expanded(
                             child: TextFormField(
                               textCapitalization: TextCapitalization.characters,
-                              onChanged: (val) {
+                              onChanged: (val){
                                 setState(() {
-                                  _fileName = val.toUpperCase();
-                                  if (dropdownValue == 1) {
-                                    completeData =
-                                        dropdownValue.toString() + "-" +
-                                            dropdownCycle + "-" + subjectCode +
-                                            "-" + dropdownBranch + "-" +
-                                            _fileDescription;
-                                  } else {
-                                    completeData =
-                                        dropdownValue.toString() + "-" +
-                                            dropdownSem + "-" + subjectCode +
-                                            "-" + dropdownBranch + "-" +
-                                            _fileDescription;
+                                  subjectCode = val.toUpperCase();
+                                  if(dropdownValue == 1){
+                                    completeData = dropdownValue.toString() + "-"+dropdownCycle  + "-"+subjectCode;
+                                  }else{
+                                    completeData = dropdownValue.toString() + "-"+ dropdownSem + "-"+subjectCode;
                                   }
                                 });
+
                               },
                               validator: (value) {
                                 if (value.isEmpty) {
