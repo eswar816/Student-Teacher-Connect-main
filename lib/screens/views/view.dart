@@ -28,20 +28,20 @@ class _ViewState extends State<View> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.black26,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.lightBlue,
-      //   title: Text("Student"),
-      //   actions: [
-      //     FlatButton.icon(onPressed: (){
-      //       Toast.show(_currentIndex.toString(), context);
-      //       Navigator.push(
-      //         context,
-      //         MaterialPageRoute(builder: (context) => View()),
-      //       );
-      //     }, icon: Icon(Icons.slideshow), label: Text("View"))
-      //   ],
-      // ),
+      backgroundColor: Colors.black26,
+      appBar: AppBar(
+        backgroundColor: Colors.lightBlue,
+        title: Text("Student"),
+        actions: [
+          FlatButton.icon(onPressed: (){
+            Toast.show(_currentIndex.toString(), context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => View()),
+            );
+          }, icon: Icon(Icons.slideshow), label: Text("View"))
+        ],
+      ),
       body: navTabs[_currentIndex],
       bottomNavigationBar: CurvedNavigationBar(
         color: Colors.blue,
@@ -200,10 +200,10 @@ class _FirstPageState extends State<FirstPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey,
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
-        title: Text("Documents"),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.lightBlue,
+      //   title: Text("Documents"),
+      // ),
       body: Column(
         children: [
           Card(
@@ -502,7 +502,7 @@ class _FirstPageState extends State<FirstPage> {
 
 
 
-//Assignment code
+//Timetable code
 class SecondPage extends StatefulWidget {
   @override
   _SecondPageState createState() => _SecondPageState();
@@ -533,7 +533,6 @@ class _SecondPageState extends State<SecondPage> {
   String dropdownBranch = 'CS';
   String dropdownSection = 'A';
   String subjectCode = '';
-  String _fileName = '';
   String _fileDescription = '';
   List<String> _branchesList = ['CS','EEE','ECE','ME','CV','IS'];
 
@@ -549,10 +548,10 @@ class _SecondPageState extends State<SecondPage> {
 
     documentsList.clear();
     final CollectionReference mainReference = Firestore.instance
-        .collection('assignment');
+        .collection('timetable');
 
     if(dropdownValue == 1){
-      mainReference.document(dropdownValue.toString()+"-YEAR").collection(dropdownCycle).getDocuments()
+      mainReference.document(dropdownValue.toString()+"-").collection(dropdownCycle).getDocuments()
           .then((querySnapshot){
 
         querySnapshot.documents.forEach((doc) {
@@ -574,15 +573,13 @@ class _SecondPageState extends State<SecondPage> {
       });
 
     }else{
-      mainReference.document(dropdownValue.toString()+"-YEAR-"+dropdownSem).collection(dropdownBranch).getDocuments()
+      mainReference.document(dropdownValue.toString()+"-").collection(dropdownBranch+"-").getDocuments()
           .then((querySnapshot){
 
         querySnapshot.documents.forEach((doc) {
           //print(doc.data);
           documentsList.add(
               Document(
-                  subjectCode: doc['CODE'] ?? 'CODE',
-                  description : doc['DESC'],
                   url:doc['PDF']
               ));
         });
@@ -591,7 +588,6 @@ class _SecondPageState extends State<SecondPage> {
           _searchStarted = false;
           documentsList.forEach((doc) {
             print("Document");
-            print(doc.subjectCode);
           });
         });
 
@@ -635,11 +631,11 @@ class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
-        title: Text("Documents"),
-      ),
+      backgroundColor: Colors.teal,
+      // appBar: AppBar(
+      //   backgroundColor: Colors.lightBlue,
+      //   title: Text("Documents"),
+      // ),
       body: Column(
         children: [
           Card(
@@ -865,7 +861,6 @@ class _SecondPageState extends State<SecondPage> {
                             textCapitalization: TextCapitalization.characters,
                             onChanged: (val){
                               setState(() {
-                                _fileName = val.toUpperCase();
                                 if(dropdownValue == 1){
                                   completeData = dropdownValue.toString() + "-"+dropdownCycle  + "-"+subjectCode+"-"+dropdownBranch+"-"+_fileDescription;
                                 }else{

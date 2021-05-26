@@ -918,7 +918,7 @@ class _SecondPageState extends State<SecondPage> {
       randomName += rng.nextInt(100).toString();
     }
 
-    FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.custom,allowedExtensions: [ 'png','jpeg','jpg'],);
+    FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.custom,allowedExtensions: [ 'pdf', 'doc'],);
     String fileName = '${_fileName}.pdf';
 
     if(result != null) {
@@ -1406,7 +1406,7 @@ class _ThirdPageState extends State<ThirdPage> {
       randomName += rng.nextInt(100).toString();
     }
 
-    FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.custom,allowedExtensions: [ 'png','jpeg','jpg'],);
+    FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.custom,allowedExtensions: [ 'pdf', 'doc'],);
     String fileName = '${_fileName}.pdf';
 
     if(result != null) {
