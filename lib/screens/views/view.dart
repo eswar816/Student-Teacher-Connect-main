@@ -32,15 +32,6 @@ class _ViewState extends State<View> {
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
         title: Text("Student"),
-        actions: [
-          FlatButton.icon(onPressed: (){
-            Toast.show(_currentIndex.toString(), context);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => View()),
-            );
-          }, icon: Icon(Icons.slideshow), label: Text("View"))
-        ],
       ),
       body: navTabs[_currentIndex],
       bottomNavigationBar: CurvedNavigationBar(
@@ -532,7 +523,7 @@ class _SecondPageState extends State<SecondPage> {
   String dropdownCycle = 'P';
   String dropdownBranch = 'CS';
   String dropdownSection = 'A';
-  String subjectCode = '';
+  String _fileName = '';
   String _fileDescription = '';
   List<String> _branchesList = ['CS','EEE','ECE','ME','CV','IS'];
 
@@ -551,6 +542,7 @@ class _SecondPageState extends State<SecondPage> {
         .collection('timetable');
 
     if(dropdownValue == 1){
+      //mainReference.document(dropdownValue.toString()+"-"+dropdownCycle+"-"+dropdownSection).setData(data)
       mainReference.document(dropdownValue.toString()+"-").collection(dropdownCycle).getDocuments()
           .then((querySnapshot){
 
@@ -573,7 +565,8 @@ class _SecondPageState extends State<SecondPage> {
       });
 
     }else{
-      mainReference.document(dropdownValue.toString()+"-").collection(dropdownBranch+"-").getDocuments()
+      //mainReference.document(dropdownValue.toString()+"-"+dropdownCycle+"-"+dropdownSection).setData(data)
+      mainReference.document(dropdownValue.toString()+"-").collection(dropdownSem+"-"+dropdownBranch+"-"+dropdownSection).getDocuments()
           .then((querySnapshot){
 
         querySnapshot.documents.forEach((doc) {
@@ -862,9 +855,10 @@ class _SecondPageState extends State<SecondPage> {
                             onChanged: (val){
                               setState(() {
                                 if(dropdownValue == 1){
-                                  completeData = dropdownValue.toString() + "-"+dropdownCycle  + "-"+subjectCode+"-"+dropdownBranch+"-"+_fileDescription;
+                                  completeData = dropdownValue.toString() + "-"+ dropdownCycle + "-"+dropdownSection +"-"+_fileName;
                                 }else{
-                                  completeData = dropdownValue.toString() + "-"+ dropdownSem + "-"+subjectCode+"-"+dropdownBranch+"-"+_fileDescription;
+                                  completeData = dropdownValue.toString() + "-"+ dropdownSem +"-"+dropdownBranch +"-"+ dropdownSection +"-"+_fileName;
+
                                 }
                               });
 
